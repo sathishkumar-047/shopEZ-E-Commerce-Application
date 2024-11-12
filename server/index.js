@@ -6,18 +6,16 @@ import path from "path";
 
 dotenv.config();
 
-//UTILS
 import connectDB from "./src/config/db.js";
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const allowedOrigins = [
-  "https://thrifty-qqkh.vercel.app", // Live frontend
-  "http://localhost:5173", // Development frontend
+  "https://thrifty-qqkh.vercel.app", 
+  "http://localhost:5173", 
 ];
 
 app.use(
@@ -38,14 +36,13 @@ app.use(
 app.options("*", cors());
 app.use(express.static(path.join(path.resolve() + "public")));
 
-//Routes Import
+
 import userRouter from "./src/routes/user.routes.js";
 import categoryRouter from "./src/routes/category.routes.js";
 import productRouter from "./src/routes/product.routes.js";
 import orderRouter from "./src/routes/order.routes.js";
 import razorpayRouter from "./src/routes/razorpay.routes.js";
 
-//Routes Declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/products", productRouter);
